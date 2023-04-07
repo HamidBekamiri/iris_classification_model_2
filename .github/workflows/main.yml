@@ -52,7 +52,7 @@ jobs:
     - name: Deploy to Heroku
       run: |
         cd ${{ github.workspace }}
-        heroku login -i -e ${{ secrets.HEROKU_API_KEY }}
+        heroku container:login
         heroku create iris-heroku-app-mlops
         git push heroku HEAD:main
       env:
