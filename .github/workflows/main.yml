@@ -46,26 +46,26 @@ jobs:
         name: model
         path: model.pkl
 
-    - name: Deploy to PythonAnywhere
-      env:
-        PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
-        PA_USER: ${{ secrets.PA_USER }}
-        PA_DOMAIN: ${{ secrets.PA_DOMAIN }}
-      run: |
-        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X DELETE https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}
-        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ -d "domain_name=${PA_DOMAIN}"
-        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}/reload
-
-#     - name: Install Heroku CLI
-#       run: curl https://cli-assets.heroku.com/install.sh | sh
-
-#     - name: Deploy to Heroku
-#       run: |
-#         cd ${{ github.workspace }}
-#         heroku container:login
-#         heroku create iris-heroku-app-mlops
-#         git push heroku HEAD:main
+#     - name: Deploy to PythonAnywhere
 #       env:
-#         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-#         HEROKU_APP_NAME: iris-heroku-app-mlops
-#         HEROKU_EMAIL: hamid.bekam@gmail.com
+#         PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
+#         PA_USER: ${{ secrets.PA_USER }}
+#         PA_DOMAIN: ${{ secrets.PA_DOMAIN }}
+#       run: |
+#         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X DELETE https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}
+#         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ -d "domain_name=${PA_DOMAIN}"
+#         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}/reload
+
+    - name: Install Heroku CLI
+      run: curl https://cli-assets.heroku.com/install.sh | sh
+
+    - name: Deploy to Heroku
+      run: |
+        cd ${{ github.workspace }}
+        heroku container:login
+        heroku create iris-heroku-app-mlops
+        git push heroku HEAD:main
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: iris-heroku-app-mlops
+        HEROKU_EMAIL: hamid.bekam@gmail.com
