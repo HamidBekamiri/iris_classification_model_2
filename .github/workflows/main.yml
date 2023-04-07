@@ -32,7 +32,7 @@ jobs:
     - name: Save Model
       uses: actions/upload-artifact@v2
       with:
-        name: my-model
+        name: model
         path: model.pkl
         
     - name: Upload artifact
