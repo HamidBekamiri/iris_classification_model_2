@@ -53,7 +53,7 @@ jobs:
         PA_DOMAIN: ${{ secrets.PA_DOMAIN }}
       run: |
         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X DELETE https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}
-        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ -d "domain=${PA_DOMAIN}"
+        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ -d "domain_name=${PA_DOMAIN}"
         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${PA_DOMAIN}/reload
 
 #     - name: Install Heroku CLI
