@@ -1,0 +1,45 @@
+name: Iris Model Trainer
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Train model and save as artifact
+      run: python iris_train.py
+      env:
+        ARTIFACTS_DIR: artifacts
+      continue-on-error: true
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: model
+        path: artifacts/model.pkl
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    needs: train
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set
