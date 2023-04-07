@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  train_and_deploy:
+  train:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +25,17 @@ jobs:
 
     - name: Train model
       run: python train.py
-
+      
+    - name: Save Model
+      uses: actions/upload-artifact@v2
+      with:
+        name: model
+        path: model.pkl
+        
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:    
     - name: Upload model artifact
       uses: actions/upload-artifact@v2
       with:
