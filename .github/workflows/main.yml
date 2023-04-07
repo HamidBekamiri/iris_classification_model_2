@@ -66,6 +66,3 @@ jobs:
         name: model
         path: artifacts
 
-    - name: Run Streamlit app
-      run: |
-        streamlit run app.py
