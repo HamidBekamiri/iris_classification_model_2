@@ -1,4 +1,4 @@
-name: Iris Model Trainer
+name: Iris Model Trainer and Deploy
 
 on:
   push:
@@ -19,10 +19,12 @@ jobs:
         python-version: '3.9'
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: |
+        pip install -r requirements.txt
 
     - name: Train model and save as artifact
-      run: python iris_train.py
+      run: |
+        python iris_train.py
       env:
         ARTIFACTS_DIR: artifacts
       continue-on-error: true
@@ -42,4 +44,23 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: model
+        path: artifacts
+
+    - name: Run Streamlit app
+      run: |
+        streamlit run app.py
+      env:
+        PORT: ${{ env.PORT }}
