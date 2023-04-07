@@ -53,7 +53,7 @@ jobs:
         GITHUB_REPOSITORY_NAME: iris_classification_model_2
       run: |
         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X DELETE https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${GITHUB_REPOSITORY_NAME}
-        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ --data @domain.json
+        curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/ --data "{\"domain\": \"${GITHUB_REPOSITORY_NAME}.pythonanywhere.com\"}"
         curl -H "Authorization: Token ${PA_API_TOKEN}" -H "Content-Type: application/json" -X POST https://www.pythonanywhere.com/api/v0/user/${PA_USER}/webapps/${GITHUB_REPOSITORY_NAME}/reload
 
 #     - name: Install Heroku CLI
