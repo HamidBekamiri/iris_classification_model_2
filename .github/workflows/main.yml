@@ -46,10 +46,16 @@ jobs:
         name: model
         path: model.pkl
 
+    - name: Install Heroku CLI
+      run: curl https://cli-assets.heroku.com/install.sh | sh
+
     - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
-      with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: iris-heroku-app-mlops
-        heroku_email: hamid.bekam@gmail.com
-        working-directory: ${{ github.workspace }}
+      run: |
+        cd ${{ github.workspace }}
+        heroku login -i -e ${{ secrets.HEROKU_API_KEY }}
+        heroku create iris-heroku-app-mlops
+        git push heroku HEAD:main
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_APP_NAME: iris-heroku-app-mlops
+        HEROKU_EMAIL: hamid.bekam@gmail.com
