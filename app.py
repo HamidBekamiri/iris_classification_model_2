@@ -6,7 +6,7 @@ from sklearn.datasets import load_iris
 iris = load_iris()
 
 # Load the saved model
-with open('model.pkl', 'rb') as f:
+with open('home/runner/work/iris_classification_model_2/iris_classification_model_2/artifacts/model.pkl', 'rb') as f:
     model = pickle.load(f)
 
 # Define the prediction function
