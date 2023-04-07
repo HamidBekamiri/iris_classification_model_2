@@ -52,4 +52,4 @@ jobs:
         heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
         heroku_app_name: iris-heroku-app-mlops
         heroku_email: hamid.bekam@gmail.com
-      working-directory: ${{ github.workspace }}
+        working-directory: ${{ github.workspace }}
