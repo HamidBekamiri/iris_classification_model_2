@@ -5,6 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 # Load the iris dataset
 iris = load_iris()
 
+iris = iris[:130]
+
 # Train a random forest classifier
 rf = RandomForestClassifier()
 rf.fit(iris.data, iris.target)
