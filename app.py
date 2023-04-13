@@ -2,8 +2,8 @@ import pickle
 # import streamlit as st
 from sklearn.datasets import load_iris
 
-# # Load the iris dataset
-# iris = load_iris()
+# Load the iris dataset
+iris = load_iris()
 
 # # Load the saved model
 # with open('model.pkl', 'rb') as f:
